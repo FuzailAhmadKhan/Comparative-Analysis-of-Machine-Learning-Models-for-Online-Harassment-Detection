@@ -45,19 +45,6 @@ All metrics can be reproduced by executing the model training script.
 
 ---
 
-## 🧠 Feature Importance Snapshot
-
-Feature-level impact for **Random Forest learning** reveals strong lexical cues (slurs, abusive bigrams) influencing model decisions.
-
-```
-[Insert feature importance image generated from models folder]
-File name: `feature_importance.png`
-```
-
-This figure can be generated using the Random Forest joblib model.
-
----
-
 ## 🛠️ Machine Learning Pipeline
 
 ### 1. **Data Preprocessing**
