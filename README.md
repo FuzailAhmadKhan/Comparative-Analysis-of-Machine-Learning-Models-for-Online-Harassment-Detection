@@ -22,7 +22,23 @@ Goals include:
 - Usability through a browser-accessible demo UI connected to backend API
 
 ---
-
+## Project File Structure 
+hate-speech-detection/
+├── models/                         # Trained ML models
+│   ├── hate_speech_rf_model.joblib
+│   ├── hate_speech_svm_model.joblib
+│   └── tfidf_vectorizer.joblib
+├── frontend/                       # Web interface
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── src/                           # Source code
+│   ├── data_preprocessing.py
+│   ├── train_all_models.py
+│   └── app.py
+├── labeled_data.csv              # Dataset
+├── requirements.txt
+└── README.md
 ## 📊 Model Evaluation Results
 
 Model comparison was performed on a stratified test split using standard NLP features (**TF-IDF unigram + bigram**).
