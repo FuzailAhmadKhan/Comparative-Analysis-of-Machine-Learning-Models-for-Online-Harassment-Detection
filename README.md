@@ -1,6 +1,6 @@
 # Comparative Study of Sentiment Analysis Classifiers for Detecting Online Harassment
 
-_A Machine Learning and NLP based comparative analysis of traditional classifiers for detecting hateful, offensive and neutral text in social media._
+_A Machine Learning based comparative analysis of traditional classifiers for detecting hateful, offensive and neutral text in social media._
 
 ---
 
