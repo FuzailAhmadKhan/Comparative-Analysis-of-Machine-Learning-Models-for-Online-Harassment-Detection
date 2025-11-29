@@ -33,6 +33,7 @@ Goals include:
 ├── data_preprocessing.py  # Text cleaning & processing
 ├── train_model.py         # Model training & metric export
 └── model_results.csv      # Accuracy, precision, recall, F1 values
+└── model_evaluation.py    # Generating Graphs and other metrics
 ```
 ## 📊 Model Evaluation Results
 
