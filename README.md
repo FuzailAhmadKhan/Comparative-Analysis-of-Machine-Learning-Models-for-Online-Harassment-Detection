@@ -22,23 +22,18 @@ Goals include:
 - Usability through a browser-accessible demo UI connected to backend API
 
 ---
-## Project File Structure 
-hate-speech-detection/
-├── models/                         # Trained ML models
-│   ├── hate_speech_rf_model.joblib
-│   ├── hate_speech_svm_model.joblib
-│   └── tfidf_vectorizer.joblib
-├── frontend/                       # Web interface
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── src/                           # Source code
-│   ├── data_preprocessing.py
-│   ├── train_all_models.py
-│   └── app.py
-├── labeled_data.csv              # Dataset
-├── requirements.txt
-└── README.md
+## 📁 Project Structure
+
+```
+📦 repository
+├── index.html              # Front-end UI
+├── styles.css             # UI styles
+├── script.js              # Front-end logic
+├── app.py                 # Flask Prediction API
+├── data_preprocessing.py  # Text cleaning & processing
+├── train_model.py         # Model training & metric export
+└── model_results.csv      # Accuracy, precision, recall, F1 values
+```
 ## 📊 Model Evaluation Results
 
 Model comparison was performed on a stratified test split using standard NLP features (**TF-IDF unigram + bigram**).
