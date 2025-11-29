@@ -1,0 +1,262 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 80px 0;
+    margin-bottom: 40px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.results-container {
+    display: none;
+}
+
+.classification-badge {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.hate-speech {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.offensive {
+    background-color: #f39c12;
+    color: white;
+}
+
+.neutral {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.framework-step {
+    border-left: 4px solid var(--secondary-color);
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.framework-step h5 {
+    color: var(--secondary-color);
+}
+
+.performance-table th {
+    background-color: var(--light-color);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+/* Research Image Styling */
+.research-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    object-fit: contain;
+}
+
+/* Ensure images are properly sized on all devices */
+.card-body img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Better spacing for image cards */
+.card .card-body {
+    padding: 1.5rem;
+}
+
+/* Progress bar improvements */
+.progress {
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
+
+.progress-bar {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Keyword badges styling */
+#keywordsList .badge {
+    margin: 2px;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+}
+
+/* Framework improvements */
+.framework-step {
+    padding: 20px;
+    margin-bottom: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .research-image {
+        max-height: 300px;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+    
+    .hero-section {
+        padding: 60px 0;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .research-image {
+        max-height: 250px;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+}
+/* Add this to your existing styles.css file */
+
+/* Fix for progress bar text cutoff */
+.progress {
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    overflow: visible; /* Changed from hidden to visible */
+    position: relative; /* Added for better text handling */
+}
+
+.progress-bar {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: visible; /* Ensure text doesn't get clipped */
+    white-space: nowrap; /* Keep text on one line */
+    min-width: fit-content; /* Bar expands to fit text content */
+    padding: 0 8px; /* Add some padding so text doesn't touch edges */
+}
+
+/* Ensure minimum widths for each progress bar type */
+.progress-bar.bg-danger {
+    min-width: 140px; /* Enough for "Hate Speech: 85.0%" */
+}
+
+.progress-bar.bg-warning {
+    min-width: 120px; /* Enough for "Offensive: 10.0%" */
+}
+
+.progress-bar.bg-success {
+    min-width: 100px; /* Enough for "Neutral: 5.0%" */
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+    .progress-bar {
+        font-size: 0.8rem; /* Slightly smaller text on mobile */
+        padding: 0 6px;
+    }
+    
+    .progress-bar.bg-danger {
+        min-width: 120px;
+    }
+    
+    .progress-bar.bg-warning {
+        min-width: 100px;
+    }
+    
+    .progress-bar.bg-success {
+        min-width: 80px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 576px) {
+    .progress-bar {
+        font-size: 0.75rem; /* Even smaller text on very small screens */
+        justify-content: flex-start; /* Align text to left when space is tight */
+        padding-left: 8px;
+    }
+    
+    /* On very small screens, we might need to truncate text */
+    .progress-bar span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+}
+
+/* Ensure the card body has enough padding to accommodate the progress bars */
+.card-body {
+    padding: 1.5rem;
+}

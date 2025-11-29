@@ -1,0 +1,6 @@
+Algorithm,Accuracy,Precision,Recall,F1-Score
+Random Forest,0.9033,0.8895,0.9033,0.8902
+SVM,0.9044,0.8888,0.9044,0.8915
+Naïve Bayes,0.8640,0.8534,0.8640,0.8386
+Decision Tree,0.8755,0.8710,0.8755,0.8731
+K-Nearest Neighbors,0.6328,0.7427,0.6328,0.6604

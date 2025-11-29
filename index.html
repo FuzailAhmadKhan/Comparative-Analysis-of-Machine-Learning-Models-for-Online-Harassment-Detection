@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Speech Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Hate Speech Detector</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#detection">Detection</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#framework">Framework</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#results">Research Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-6 fw-bold">Comparative Analysis of Machine Learning Models for Online Harassment Detection</h1>
+            <p class="lead">Using Machine Learning to Combat Online Hate Speech</p>
+            <h6><p class="lead">Made By Fuzail Ahmad Khan (2022-310-066)</p></h6>
+            <p>Jamia Hamdard University</p>
+            <a href="#detection" class="btn btn-light btn-lg mt-3">Try Detection System</a>
+        </div>
+    </section>
+
+    <!-- Detection Section -->
+    <section id="detection" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h3>Hate Speech Detection</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="detectionForm">
+                                <div class="mb-3">
+                                    <label for="textInput" class="form-label">Enter text to analyze:</label>
+                                    <textarea class="form-control" id="textInput" rows="4" placeholder="Enter social media text, comment, or message..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="algorithmSelect" class="form-label">Select Classification Algorithm:</label>
+                                    <select class="form-select" id="algorithmSelect">
+                                        <option value="svm">Support Vector Machine (SVM)</option>
+                                        <option value="rf">Random Forest (RF)</option>
+                                        <option value="nb">Naïve Bayes</option>
+                                        <option value="knn">K-Nearest Neighbors (KNN)</option>
+                                        <option value="dt">Decision Tree</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="featureSelect" class="form-label">Select Feature Engineering:</label>
+                                    <select class="form-select" id="featureSelect">
+                                        <option value="bigram">Bigram with TF-IDF</option>
+                                        <option value="unigram">Unigram with TF-IDF</option>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Analyze Text</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Results Section -->
+                    <div id="resultsContainer" class="results-container mt-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <h4>Analysis Results</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-4">
+                                    <h5>Classification:</h5>
+                                    <span id="classificationBadge" class="classification-badge">Loading...</span>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h5>Confidence Scores:</h5>
+                                    <div class="progress mb-2">
+                                        <div id="hateProgress" class="progress-bar bg-danger" role="progressbar" style="width: 0%">Hate Speech: 0%</div>
+                                    </div>
+                                    <div class="progress mb-2">
+                                        <div id="offensiveProgress" class="progress-bar bg-warning" role="progressbar" style="width: 0%">Offensive: 0%</div>
+                                    </div>
+                                    <div class="progress">
+                                        <div id="neutralProgress" class="progress-bar bg-success" role="progressbar" style="width: 0%">Neutral: 0%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h5>Detected Keywords:</h5>
+                                    <div id="keywordsList" class="d-flex flex-wrap gap-2">
+                                        <!-- Keywords will be inserted here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="alert alert-info">
+                                    <h6>Explanation:</h6>
+                                    <p id="explanationText">Based on the selected algorithm and feature engineering, this text has been classified with a confidence score shown above.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section id="framework" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Proposed Framework Against Online Harassment</h2>
+            
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="framework-step">
+                        <h5>Step 1: Data Collection & Account Monitoring</h5>
+                        <p>The system continuously monitors social media platforms, collecting comments and interactions from potentially problematic accounts. It identifies accounts that repeatedly engage with hateful content through likes, shares, and comments.</p>
+                        <div class="card bg-white mt-3">
+                            <div class="card-body">
+                                <h6>Data Collection Metrics:</h6>
+                                <ul>
+                                    <li>Comment history analysis</li>
+                                    <li>Interaction patterns (likes, shares)</li>
+                                    <li>Network mapping of related accounts</li>
+                                    <li>Frequency of flagged content engagement</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="framework-step">
+                        <h5>Step 2: Machine Learning Classification</h5>
+                        <p>Using the trained models (SVM with Bigram TF-IDF performing best), the system classifies content into three categories:</p>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <span class="badge hate-speech mb-2">Hate Speech</span>
+                                        <p class="card-text">Content containing targeted harassment or threats</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <span class="badge offensive mb-2">Offensive Language</span>
+                                        <p class="card-text">Contains offensive terms but not targeted harassment</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <span class="badge neutral mb-2">Neutral Content</span>
+                                        <p class="card-text">No offensive language or hate speech detected</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="framework-step">
+                        <h5>Step 3: Network Analysis & Chain Detection</h5>
+                        <p>The system identifies networks of accounts that coordinate harassment campaigns by analyzing interaction patterns and content similarity.</p>
+                        <div class="card bg-white mt-3">
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="networkChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="framework-step">
+                        <h5>Step 4: Moderator Alert & Action</h5>
+                        <p>When harmful networks are detected, the system alerts human moderators with detailed reports and recommended actions based on platform policies.</p>
+                        <div class="card bg-white mt-3">
+                            <div class="card-body">
+                                <h6>Moderator Dashboard Features:</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li>Priority-ranked case management</li>
+                                            <li>Detailed interaction history</li>
+                                            <li>Network visualization tools</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li>Automated action recommendations</li>
+                                            <li>Appeal handling workflow</li>
+                                            <li>Performance analytics</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Results Section -->
+    <section id="results" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Research Results & Performance</h2>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Algorithm Performance Comparison</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Feature Engineering Impact</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="featureChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Detailed Performance Metrics</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped performance-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Algorithm</th>
+                                            <th>Feature Engineering</th>
+                                            <th>Accuracy</th>
+                                            <th>Precision</th>
+                                            <th>Recall</th>
+                                            <th>F1-Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Random Forest</td>
+                                            <td>Bigram + TF-IDF</td>
+                                            <td>90.33%</td>
+                                            <td>0.8895</td>
+                                            <td>0.9033</td>
+                                            <td>0.8902</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SVM</td>
+                                            <td>Bigram + TF-IDF</td>
+                                            <td>90.44%</td>
+                                            <td>0.8888</td>
+                                            <td>0.9044</td>
+                                            <td>0.8915</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Naïve Bayes</td>
+                                            <td>Bigram + TF-IDF</td>
+                                            <td>86.40%</td>
+                                            <td>0.8534</td>
+                                            <td>0.8640</td>
+                                            <td>0.8386</td>
+                                        </tr>
+                                        <tr>
+                                            <td>K-Nearest Neighbors</td>
+                                            <td>Bigram + TF-IDF</td>
+                                            <td>63.28%</td>
+                                            <td>0.7427</td>
+                                            <td>0.6328</td>
+                                            <td>0.6604</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Decision Tree</td>
+                                            <td>Bigram + TF-IDF</td>
+                                            <td>87.55%</td>
+                                            <td>0.8710</td>
+                                            <td>0.8755</td>
+                                            <td>0.8731</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Visualizations Section -->
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Model Accuracy Comparison</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="accuracy_comparison.png" alt="Model Accuracy Comparison" class="research-image">
+                            <p class="mt-2 text-muted">Comparison of accuracy scores across all five machine learning algorithms.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Model F1-Score Comparison</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="f1_comparison.png" alt="Model F1-Score Comparison" class="research-image">
+                            <p class="mt-2 text-muted">F1-Score comparison showing balanced performance across classes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Feature Importance Analysis</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="feature_importance.png" alt="Feature Importance" class="research-image">
+                            <p class="mt-2 text-muted">Top 20 most important features from Random Forest model.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>ROC Curve Comparison</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="roc_curves.png" alt="ROC Curves" class="research-image">
+                            <p class="mt-2 text-muted">Receiver Operating Characteristic curves for all models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Precision-Recall Curves</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="precision_recall_curves.png" alt="Precision-Recall Curves" class="research-image">
+                            <p class="mt-2 text-muted">Precision-Recall curves showing model performance across different thresholds.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Confusion Matrices Analysis</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="confusion_matrices.png" alt="Confusion Matrices" class="research-image">
+                            <p class="mt-2 text-muted">Detailed confusion matrices for all five algorithms showing classification patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Misclassification Analysis</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="misclassification_analysis.png" alt="Misclassification Analysis" class="research-image">
+                            <p class="mt-2 text-muted">Analysis of common misclassification patterns across all models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-center mb-4">About This Research</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>This system is based on research comparing machine learning classifiers for detecting targeted harassment on social media platforms. The study evaluated three feature engineering techniques and five machine learning algorithms using a dataset of 14,509 annotated tweets.</p>
+                            
+                            <h5>Key Findings:</h5>
+                            <ul>
+                                <li>Bigram features with TF-IDF outperformed unigram approaches</li>
+                                <li>Random Forest and SVM achieved the highest accuracy (90.33% and 90.44% respectively)</li>
+                                <li>The proposed framework enables pseudo-autonomous detection of coordinated harassment campaigns</li>
+                            </ul>
+                            
+                            <h5>Dataset Information:</h5>
+                            <p>The Hate Speech Detection dataset contains tweets classified into three categories:</p>
+                            <ul>
+                                <li><strong>HATE</strong>: Contains hate speech (2,399 texts)</li>
+                                <li><strong>OFFENSIVE</strong>: Contains offensive language but no hate speech (4,836 texts)</li>
+                                <li><strong>OK</strong>: No offensive content (7,274 texts)</li>
+                            </ul>
+                            
+                            <div class="alert alert-warning">
+                                <strong>Note:</strong> This demonstration uses a simulated classification system. In a production environment, the models would be trained on the actual dataset and integrated with social media platform APIs.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Hate Speech Detection System</h5>
+                    <p>Using machine learning to combat targeted harassment on social media platforms.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>&copy; Hate Speech Detection Research Project</p>
+                    <p>Made By Fuzail Ahmad Khan</p>
+                    <p>2022-310-066</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
