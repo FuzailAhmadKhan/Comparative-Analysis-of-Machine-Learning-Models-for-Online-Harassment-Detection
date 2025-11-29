@@ -148,7 +148,7 @@ joblib
 
 ---
 
-## 📚 Dataset Citation (Required)
+## 📚 Dataset Citation
 
 Use one of the following formats depending on your dataset source.
 
